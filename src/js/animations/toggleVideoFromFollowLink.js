@@ -40,12 +40,12 @@ export const toggleVideoFromFollowLink = () => {
             console.log(topLoco);
             console.log(link);
 
-            TweenLite.to(poster, 1,
+            TweenLite.to(poster, 0.5,
                 {
-                    left: ( 0 - page.x ),
-                    top: ( 0 - page.y ),
-                    width: '100vw',
-                    height: '100vh',
+                    left: ( 0 - ( page.x - 87 ) ),
+                    top: ( 0 - ( page.y - 87 ) ),
+                    width: window.innerWidth + 50,
+                    height: window.innerHeight + 50,
                     borderRadius: 0,
                     opacity: 1,
                     ease: Power4.easeOut,
