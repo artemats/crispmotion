@@ -10,21 +10,22 @@ export const photoParallax = () => {
             scrollTrigger: {
                 trigger: photos[i],
                 scroller: '#wrapper',
-                scrub: true,
+                scrub: false,
             }
         });
 
         photoTl
             .set(photos[i], {
-                scale: 1.5,
+                scale: 1.6,
                 opacity: 0,
             })
             .fromTo(photos[i], {
-                scale: 1.5,
+                scale: 1.6,
                 opacity: 0,
             }, {
                 scale: 1,
                 opacity: 1,
+                duration: 4,
                 ease: Power4.easeOut
             });
 

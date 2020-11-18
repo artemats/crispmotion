@@ -68,8 +68,15 @@
         //  background-color: $black;
         //}
         &.light-theme{
-          .burger-box-arrow{
-            background-color: $black;
+          .burger{
+              &-box-arrow{
+                background-color: $black;
+              }
+              &.is-active{
+                  .burger-box-arrow{
+                    background-color: $white;
+                  }
+              }
           }
         }
     }

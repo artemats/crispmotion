@@ -1,5 +1,6 @@
 import { TweenLite, Power4 } from 'gsap';
 import {locoScroll} from "../smooth-scroll/smoothScroll";
+import {disableMoving} from "./mouseFollowLink";
 
 export const toggleVideoFromFollowLink = () => {
 
@@ -11,28 +12,42 @@ export const toggleVideoFromFollowLink = () => {
 
         videoLinks[i].addEventListener('click', function (link) {
 
-            let startX = link.offsetX;
-            let startY = link.offsetY;
-            let currentX = link.clientX;
-            let currentY = link.clientY;
+            disableMoving();
+
             let topLoco = locoScroll.scroll.instance.scroll.y;
 
-            console.log(locoScroll.scroll.instance.scroll.y);
+            let screen = {
+                x: link.screenX,
+                y: link.screenY,
+            };
+            let page = {
+              x: link.pageX,
+              y: link.pageY
+            };
+            let position = {
+                x: link.x,
+                y: link.y
+            };
+            let client = {
+                x: link.clientX,
+                y: link.clientY
+            };
 
-            TweenLite.fromTo(poster,
+            console.log('screen - ', screen);
+            console.log('page - ', page);
+            console.log('position - ', position);
+            console.log('client - ', client);
+            console.log(topLoco);
+            console.log(link);
+
+            TweenLite.to(poster, 1,
                 {
-                    left: currentX,
-                    top: currentY,
-                },
-                {
-                    position: 'fixed',
-                    left: 0,
-                    top: topLoco,
-                    height: '100vh',
+                    left: ( 0 - page.x ),
+                    top: ( 0 - page.y ),
                     width: '100vw',
+                    height: '100vh',
                     borderRadius: 0,
                     opacity: 1,
-                    scale: 1,
                     ease: Power4.easeOut,
                     onComplete: locoScroll.stop()
                 });
